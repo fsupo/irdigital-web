@@ -2,6 +2,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Component, Inject } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 
+import { FirebaseService } from '../../services/firebase.service';
 import { ClientService } from '../../services/client.service';
 import { Client } from '../../models/client';
 
@@ -16,6 +17,7 @@ export class AddDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<AddDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Client,
+    public firebaseService: FirebaseService,
     public clientService: ClientService) { }
 
   formControl = new FormControl('', [
@@ -27,7 +29,6 @@ export class AddDialogComponent {
   }
 
   submit() {
-    // emppty stuff
   }
 
   onNoClick(): void {
@@ -40,6 +41,7 @@ export class AddDialogComponent {
   }
 
   public confirmAdd(): void {
-    this.clientService.CreateClient(this.data).subscribe((data: {}) => {})
+    this.clientService.createClient(this.data).subscribe((data: {}) => {})
+    this.firebaseService.createClient(this.data).then((data: {}) => {})
   }
 }
