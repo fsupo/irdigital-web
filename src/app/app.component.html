@@ -1,0 +1,123 @@
+<mat-toolbar color="primary">
+  <span>IRDIGITAL WEB</span>
+</mat-toolbar>
+<div class="app-main">
+  <div class="app-page-title">
+    <div class="page-title-wrapper">
+      <div class="page-title-heading">
+        <div class="page-title-icon">
+          <mat-icon style="font-size: 40px; height: auto;" aria-label="Example icon-button with a home icon">home
+          </mat-icon>
+        </div>
+        <div><strong>Dashboard</strong>
+          <div class="page-title-subheading">Administrador de información de clientes</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <mat-grid-list cols="1">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title><strong>Metricas</strong></mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-grid-list cols="3" rowHeight="100px" align="end">
+
+          <mat-grid-tile class="bg-midnight-bloom">
+            <div class="widget-content widget-content-wrapper text-white">
+              <div class="widget-content-left">
+                <div class="widget-heading">Total de Clientes</div>
+                <div class="widget-subheading">Del ultimo año</div>
+              </div>
+              <div class="widget-content-right">
+                <div class="widget-numbers text-white"><span>{{metric.count}}</span></div>
+              </div>
+            </div>
+          </mat-grid-tile>
+
+          <mat-grid-tile class="bg-midnight-bloom">
+            <div class="widget-content widget-content-wrapper text-white">
+              <div class="widget-content-left">
+                <div class="widget-heading">Promedio edad entre todos los clientes</div>
+                <div class="widget-subheading">Del ultimo año</div>
+              </div>
+              <div class="widget-content-right">
+                <div class="widget-numbers text-white"><span>{{metric.ageAverage}}</span></div>
+              </div>
+            </div>
+          </mat-grid-tile>
+
+          <mat-grid-tile class="bg-midnight-bloom">
+            <div class="widget-content widget-content-wrapper text-white">
+              <div class="widget-content-left">
+                <div class="widget-heading">Desviación estándar entre las edades de todos los clientes</div>
+                <div class="widget-subheading">Del ultimo año</div>
+              </div>
+              <div class="widget-content-right">
+                <div class="widget-numbers text-white"><span>{{metric.ageStandarDeviation}}</span></div>
+              </div>
+            </div>
+          </mat-grid-tile>
+
+        </mat-grid-list>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-list>
+  <mat-grid-list cols="1">
+    <mat-card class="table-card">
+      <mat-card-header>
+        <mat-card-title><strong>Lista de Clientes</strong></mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <!-- <button mat-raised-button (click)="addNew()" color="primary"> Agregar Cliente </button> -->
+        <div class="container mat-elevation-z8">
+          <mat-table #table [dataSource]="ClientsList" matSort class="mat-cell">
+
+            <ng-container matColumnDef="nombre">
+              <mat-header-cell mat-header-cell *matHeaderCellDef> Nombres </mat-header-cell>
+              <mat-cell mat-cell *matCellDef="let element"> {{element.nombre}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="apellido">
+              <mat-header-cell mat-header-cell *matHeaderCellDef> Apellidos </mat-header-cell>
+              <mat-cell mat-cell *matCellDef="let element"> {{element.apellido}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="edad">
+              <mat-header-cell mat-header-cell *matHeaderCellDef> Edad actual</mat-header-cell>
+              <mat-cell mat-cell *matCellDef="let element"> {{element.edad}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="nacimiento">
+              <mat-header-cell mat-header-cell *matHeaderCellDef> Fecha de nacimiento </mat-header-cell>
+              <mat-cell mat-cell *matCellDef="let element"> {{element.nacimiento}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="fallecimiento">
+              <mat-header-cell mat-header-cell *matHeaderCellDef> Fecha de posible fallecimiento </mat-header-cell>
+              <mat-cell mat-cell *matCellDef="let element"> {{element.fallecimiento}} </mat-cell>
+            </ng-container>
+
+            <!-- actions -->
+            <ng-container matColumnDef="acciones">
+              <mat-header-cell *matHeaderCellDef>
+                <button mat-icon-button color="primary" (click)="addNew()">
+                  <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+                </button>
+              </mat-header-cell>
+  
+              <mat-cell *matCellDef="let row; let i=index;">
+                <button mat-icon-button color="accent" (click)="deleteItem(i, row.id, row.title, row.state, row.url)">
+                  <mat-icon aria-label="Delete">delete</mat-icon>
+                </button>
+              </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-list>
+</div>
