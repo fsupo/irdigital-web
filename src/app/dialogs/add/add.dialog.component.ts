@@ -35,13 +35,13 @@ export class AddDialogComponent {
     this.dialogRef.close();
   }
 
-  ageCalculate(){
+  ageCalculate() {
     var timeDiff = Math.abs(Date.now() - new Date(this.data.nacimiento).getTime());
     this.data.edad = Math.floor(timeDiff / (1000 * 3600 * 24) / 365.25);
   }
 
   public confirmAdd(): void {
-    this.clientService.createClient(this.data).subscribe((data: {}) => {})
-    this.firebaseService.createClient(this.data).then((data: {}) => {})
+    this.clientService.createClient(this.data).subscribe((data: {}) => { })
+    this.firebaseService.createClient(this.data).then((data: {}) => { })
   }
 }

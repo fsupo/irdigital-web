@@ -41,6 +41,15 @@ export class ClientService {
             )
     }
 
+    // POST
+    DeleteClient(id) {
+        return this.http.delete<Client>(this.baseurl + '/eliminar/' + id, this.httpOptions)
+            .pipe(
+                retry(1),
+                catchError(this.errorHandl)
+            )
+    }
+
     // GET
     GetKpis(): Observable<Metric> {
         return this.http.get<Metric>(this.baseurl + '/kpideclientes')

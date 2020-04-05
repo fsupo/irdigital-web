@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddDialogComponent } from './dialogs/add/add.dialog.component';
+import { DeleteDialogComponent } from './dialogs/delete/delete.dialog.component';
 import { ClientService } from './services/client.service';
 import { FirebaseService } from './services/firebase.service';
 import { Client } from '././models/client';
@@ -47,6 +48,16 @@ export class AppComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      this.loadClients();
+    });
+  }
+
+  deleteClient(id: number): void{
+    const dialogDelete = this.dialog.open(DeleteDialogComponent, {
+      data: {id: id}
+    });
+
+    dialogDelete.afterClosed().subscribe(result => {
       this.loadClients();
     });
   }
