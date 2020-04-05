@@ -18,6 +18,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 
 import { AddDialogComponent } from './dialogs/add/add.dialog.component';
+import { DeleteDialogComponent } from './dialogs/delete/delete.dialog.component';
 
 import { ClientService } from './services/client.service';
 import { FirebaseService } from './services/firebase.service';
@@ -32,7 +33,8 @@ import { AngularFirestoreModule } from "@angular/fire/firestore";
 @NgModule({
   declarations: [
     AppComponent,
-    AddDialogComponent
+    AddDialogComponent,
+    DeleteDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +63,8 @@ import { AngularFirestoreModule } from "@angular/fire/firestore";
     AngularFirestoreModule
   ],
   entryComponents: [
-    AddDialogComponent
+    AddDialogComponent,
+    DeleteDialogComponent
   ],
   providers: [
     ClientService,

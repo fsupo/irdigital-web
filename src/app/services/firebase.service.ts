@@ -13,16 +13,21 @@ export class FirebaseService {
         return this.firestore.collection("clientes").snapshotChanges();
     }
 
-    postClient(client: Client){
-        return this.firestore.collection('clientes').add(client);
+    createClient(client: Client){
+        return this.firestore.collection('clientes').add({
+            edad: client.edad,
+            nombre: client.nombre,
+            apellido: client.apellido,
+            nacimiento: client.nacimiento
+        });
     }
 
     putClient(client: Client){
         delete client.id;
-        this.firestore.doc('policies/' + client.id).update(client);
+        this.firestore.doc('clientes/' + client.id).update(client);
     }
 
     deletePolicy(clientId: string){
-        this.firestore.doc('policies/' + clientId).delete();
+        this.firestore.doc('clientes/' + clientId).delete();
     }
 }

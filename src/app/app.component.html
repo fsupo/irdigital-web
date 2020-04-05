@@ -107,7 +107,7 @@
               </mat-header-cell>
   
               <mat-cell *matCellDef="let row; let i=index;">
-                <button mat-icon-button color="accent" (click)="deleteItem(i, row.id, row.title, row.state, row.url)">
+                <button mat-icon-button color="accent" (click)="deleteClient(row.id)">
                   <mat-icon aria-label="Delete">delete</mat-icon>
                 </button>
               </mat-cell>
